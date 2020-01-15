@@ -4,8 +4,6 @@
 void IPC_ClientSentMessage(IPCmessageToDaemon msg){
 	int pipe;
 	
-	msg.a = 20; msg.b = 10;
-
 	char* pipeName = "/tmp/clientToDaemonFIFO";
 	mkfifo(pipeName, 0666);
 	pipe = open(pipeName, O_WRONLY);
@@ -31,9 +29,6 @@ IPCmessageToDaemon IPC_DaemonReciveMessage(){
 
 void IPC_DaemonSentMessage(IPCmessageToClient msg) {
 	int pipe;
-
-	msg.a = 20; msg.b = 10;
-
 	char* pipeName = "/tmp/daemonToClientFIFO";
 	mkfifo(pipeName, 0666);
 	pipe = open(pipeName, O_WRONLY);

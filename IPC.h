@@ -44,3 +44,44 @@ returns the message
 Use only in Clients
 */
 IPCmessageToClient IPC_ClientReciveMessage();
+
+
+/*
+Daemon Example:
+
+#include "IPC.h"
+
+int main() {
+	IPCmessageToDaemon message;
+	IPCmessageToClient sentmessage;
+
+	while (1) {
+		message = IPC_DaemonReciveMessage(); // Here the program stops and waits for a message
+		printf("message recived\n");
+		printf("%s\n", message.source);
+
+		sentmessage.jobId = 5;
+		IPC_DaemonSentMessage(sentmessage); // Sending message back to client
+	}
+	return 0;
+}
+
+
+Client Example:
+
+#include "IPC.h"
+
+int main() {
+	IPCmessageToDaemon message;
+
+	strcpy(message.source, "/c/test");
+	IPC_ClientSentMessage(message);
+	printf("Message sent \n");
+
+	IPCmessageToClient reciveMessage;
+	reciveMessage = IPC_ClientReciveMessage();
+
+	printf("%d\n", reciveMessage.jobId);
+	return 0;
+}
+*/
