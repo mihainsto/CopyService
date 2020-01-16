@@ -1,3 +1,5 @@
+#pragma once
+
 #include <stdio.h> 
 #include <string.h> 
 #include <fcntl.h> 
@@ -16,6 +18,7 @@ typedef struct IPCmessageToDaemon {
 typedef struct IPCmessageToClient {
 	int jobList[1024];
 	int jobId;
+	float status;
 } IPCmessageToClient;
 
 
