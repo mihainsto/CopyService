@@ -65,6 +65,9 @@ int copy(void* arg) {
         }
 
     }
+    pthread_mutex_lock(&mtx);
+    threads[data->jobID] = 0;
+    pthread_mutex_unlock(&mtx);
 }
 void stopThread(int index)
 {
